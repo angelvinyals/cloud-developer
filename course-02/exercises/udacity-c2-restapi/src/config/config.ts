@@ -6,8 +6,8 @@ export const config = {
     "host": "udagramtest1dev.cqa6hhhwnkcf.us-east-1.rds.amazonaws.com",
     "dialect": "postgres",
     "aws_region": "us-east-1",
-    "aws_profile": "default",
-    "aws_media_bucket": "udagram-ruttner-dev"
+    "aws_profile": "s3.amazonaws.com",
+    "aws_media_bucket": "udagram-test1-dev"
   },
   "prod": {
     "username": "",

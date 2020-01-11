@@ -42,7 +42,7 @@ router.patch('/:id',
     async (req: Request, res: Response) => {
         //@TODO try it yourself
         let { id } = req.params;
-        console.log (`id: ${id}`) 
+        console.log (`patch el id es: ${id}`) 
         
         if (id) {
             const {caption,url} = req.body;
@@ -57,28 +57,25 @@ router.patch('/:id',
             if (!url) {
                 return res.status(400).send({ message: 'File url is required' });
             }
-
-            const item = {
+          
+            const itemToUpdate = {
                 caption,
                 url
             }
-
-            console.log(`item: ${JSON.stringify(item)}`) 
+            console.log(`el nou item es: ${JSON.stringify(itemToUpdate)}`) 
             
-
-            
-
-          
-
+            try {
+                // Get the item by Primary Key
+                const item = await FeedItem.findByPk(id);
+                // Update the item with the new data
+                const updated = await item.update(itemToUpdate);
+                return res.send(updated);
+               } catch (e) {
+                return next(new Error(e));
+               }     
         }
         
-        /*     
-        const saved_item = await item.save();
-
-        saved_item.url = AWS.getGetSignedUrl(saved_item.url);
-        res.status(201).send(saved_item);
-        */
-        return res.status(500).send("not implemented yet")
+        return res.status(500).send("id is not as url param. put id please. ")
 });
 
 
@@ -86,6 +83,7 @@ router.patch('/:id',
 router.get('/signed-url/:fileName', 
     requireAuth, 
     async (req: Request, res: Response) => {
+    console.log(`/signed-url/:fileName`)
     let { fileName } = req.params;
     const url = AWS.getPutSignedUrl(fileName);
     res.status(201).send({url: url});
