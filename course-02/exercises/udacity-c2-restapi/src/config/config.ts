@@ -1,6 +1,6 @@
 export const config = {
   "dev": {
-    "username": "udagramtest1dev",
+    "username": "udagramtest1dev", 
     "password": "udagramtest1dev",
     "database": "udagramtest1dev",
     "host": "udagramtest1dev.cqa6hhhwnkcf.us-east-1.rds.amazonaws.com",
