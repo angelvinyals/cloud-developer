@@ -1,13 +1,16 @@
+import dotenv from 'dotenv'
+dotenv.config()
+
 export const config = {
   "dev": {
-    "username": "udagramtest1dev", 
-    "password": "udagramtest1dev",
-    "database": "udagramtest1dev",
-    "host": "udagramtest1dev.cqa6hhhwnkcf.us-east-1.rds.amazonaws.com",
-    "dialect": "postgres",
-    "aws_region": "us-east-1",
-    "aws_profile": "s3.amazonaws.com",
-    "aws_media_bucket": "udagram-test1-dev"
+    "username": process.env.DB_USER,
+    "password": process.env.DB_PASS,
+    "database": process.env.DB_NAME,
+    "host": process.env.DB_HOST,
+    "dialect": process.env.DB_DIALECT,
+    "aws_region": process.env.AWS_REGION,
+    "aws_profile": process.env.AWS_PROFILE,
+    "aws_media_bucket": process.env.AWS_MEDIA_BUCKET,
   },
   "prod": {
     "username": "",
